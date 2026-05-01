@@ -1,0 +1,11 @@
+allow_images=true
+allow_markup=true
+
+hide_scroll=true
+
+columns=1
+width=30%
+#lines=8
+always_parse_args=true
+icon-theme=Papirus
+

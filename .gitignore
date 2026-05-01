@@ -1,0 +1,29 @@
+# =========================
+# Cache / runtime files
+# =========================
+**/__pycache__/
+*.cache
+*.log
+*.tmp
+
+# =========================
+# Thumbnails / file managers
+# =========================
+.Thumbnails/
+*.thumbnails
+Thumbs.db
+
+# =========================
+# App runtime/state files
+# =========================
+*.bak
+*.swp
+*.swo
+*.old
+
+# =========================
+# Optional (ONLY if generated automatically)
+# =========================
+# If any of these are generated dynamically, uncomment:
+# waybar/waybar.log
+# hypr/hyprland.log

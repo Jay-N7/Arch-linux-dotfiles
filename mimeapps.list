@@ -1,0 +1,7 @@
+[Default Applications]
+x-scheme-handler/nc=com.nextcloud.desktopclient.nextcloud.desktop
+
+[Added Associations]
+text/markdown=org.gnome.gedit.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+image/png=org.pwmt.zathura-pdf-mupdf.desktop;
