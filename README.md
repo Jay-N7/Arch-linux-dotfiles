@@ -7,18 +7,13 @@
 - FASTER workflow thanks to vim bindings acorss system, thus Qutebrowser also i have installed.
 - Refined and finetuned with trial and error acorss years, enjoy
 
-<img width="1360" height="768" alt="swappy-20260501_141920" src="https://github.com/user-attachments/assets/a8d0bf1a-a88e-4900-aa94-973a078358db" />
-
-
-<img width="1366" height="768" alt="nvim2" src="https://github.com/user-attachments/assets/3591ecbd-fae0-4310-b95c-1f816c6fd8fd" />
-
+<br>
+<img width="1362" height="768" alt="swappy-20260501_143242" src="https://github.com/user-attachments/assets/1f3d1e7d-70a2-4191-8239-5db1b256aa45" />
+<br> 
 <img width="1360" height="768" alt="1777625883440" src="https://github.com/user-attachments/assets/b88f5771-f646-4507-9ea3-e5bd169f9237" />
-
-
-<img width="1366" height="768" alt="rice3" src="https://github.com/user-attachments/assets/aa27d552-73da-4e71-adb1-2ae98f43945e" />
-
-
+<br>
 <img width="1363" height="768" alt="nvim_fzf" src="https://github.com/user-attachments/assets/3871bdbf-8a8a-441f-8b6a-4e6141d220d0" />
-
-
+<br>
+<img width="1361" height="768" alt="swappy-20260501_144034" src="https://github.com/user-attachments/assets/89fcf6ca-b02c-4207-8b16-5c9ecfe36d79" />
+<br>
 <img width="1366" height="768" alt="old_rice" src="https://github.com/user-attachments/assets/10b4b32c-e0c8-49a4-bcc8-8a11c7c2749a" />
