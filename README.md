@@ -12,6 +12,8 @@
 
 <img width="1366" height="768" alt="nvim2" src="https://github.com/user-attachments/assets/3591ecbd-fae0-4310-b95c-1f816c6fd8fd" />
 
+<img width="1360" height="768" alt="1777625883440" src="https://github.com/user-attachments/assets/b88f5771-f646-4507-9ea3-e5bd169f9237" />
+
 
 <img width="1366" height="768" alt="rice3" src="https://github.com/user-attachments/assets/aa27d552-73da-4e71-adb1-2ae98f43945e" />
 
