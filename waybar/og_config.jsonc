@@ -7,24 +7,20 @@
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/mode",
-        "custom/media",
-        "pulseaudio",
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-center": [
-        "hyprland/workspaces",
+        "clock",
     ],
     "modules-right": [
         "network",
-        "backlight",
         "battery",
-        "clock",
+        "pulseaudio",
         "bluetooth",
         "custom/power"
     ],
 
-      "margin": "6px 12px -12px 12px",
+   "margin": "6px 12px -5px 12px",
 
     // Modules configuration
 /*     "hyprland/workspaces": {
@@ -55,15 +51,16 @@
     },
   },
 
-    "bluetooth": {
-        "icon-size": 18,
-        "spacing": 8,
-         "icons": {
-           "blueman": "bluetooth",
-         }
-    },
+"bluetooth": {
+    "format": "",
+    "format-connected": "",
+    "format-disabled": "",
+    "format-off": "",
+    "tooltip": false,
+    "on-click": "blueman-manager"
+},
     "clock": {
-        "format": "{:%I:%M %p}",
+        "format": "{:%I:%M %p }",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%d-%m-%Y}"
     },
@@ -103,35 +100,34 @@
         "format-icons": ["", "", "", "", ""]
     },
 
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+"network": {
+    // "interface": "wlp2*",
+    "format-wifi": "{icon}",
+    "format-icons": ["󰤯", "󰤟", "󰤢"],
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "⚠",
+    "format-alt": "{essid} ({signalStrength}%)",
+    "tooltip-format": "{ifname} via {gwaddr}"
+},
+"pulseaudio": {
+    // "scroll-step": 1,
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": " {icon}",
+    "format-muted": "",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/media": {
+    "on-click": "pavucontrol"
+}, 
+"custom/media": {
         "format": "{text}",
         "return-type": "json",
         "max-length": 30,

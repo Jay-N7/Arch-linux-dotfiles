@@ -1,13 +1,14 @@
 * {
     font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
-    font-size: 10px;
+    font-size: 12px;
 }
 window#waybar {
     /*background-color: rgba(43, 48, 59, 1);*/
-    background: transparent;
+    background: #000000;
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
+    border-radius:3;
 }
 
 /*window#waybar.hidden {
@@ -34,7 +35,7 @@ window#waybar.solo {
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 3 3px transparent;
+    box-shadow: inset 0 0px transparent;
     /* Avoid rounded borders under each button name */
     border: none;
     border-radius: 0;
@@ -76,13 +77,13 @@ button {
 }
 
 /* “neighbors” (visible workspaces) */
-#workspaces button.visible {
+/*#workspaces button.visible {
   min-width: 26px;
-}
+}*/
 
 /* active workspace */
 #workspaces button.active {
-  min-width: 42px;
+  color: #ff007f;
 }
 
 /*#mode {
@@ -108,8 +109,8 @@ button {
 #power-profiles-daemon
 {
     padding: 0 8px;
-    margin: 0 6px;
-    border-radius: 5px;
+    margin: 0 4px;
+    border-radius: 0px;
 
 }
 
@@ -186,11 +187,11 @@ button {
 }
 
 #network {
-    background-color: #2980b9;
+    background-color: #000000;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: #ff0000;
 }
 
 #pulseaudio {
@@ -230,14 +231,18 @@ button {
     background-color: #2980b9;
 }
 
-#bluetooth > .passive {
-    -gtk-icon-effect: dim;
+#bluetooth.connected {
+    color: #4da3ff; /* blue */
 }
 
-#bluetooth > .needs-attention {
+/*#bluetooth > .passive {
+    -gtk-icon-effect: dim;
+}*/
+
+/*#bluetooth > .needs-attention {
     -gtk-icon-effect: highlight;
     background-color: #eb4d4b;
-}
+}*/
 
 /*#scratchpad {
     background: rgba(0, 0, 0, 0.2);
@@ -267,3 +272,27 @@ button {
 /*#privacy-item.audio-out {
     background-color: #0069d4;
 }*/
+window#waybar,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#bluetooth,
+#backlight,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#mode,
+#workspaces,
+#window,
+#disk {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#clock, 
+#custom-power {
+    color: #ff007f;
+}
+
