@@ -6,16 +6,15 @@
 - Main ext editor is obviously "neovim"
 - FASTER workflow thanks to vim bindings acorss system, thus Qutebrowser also i have installed.
 - Refined and finetuned with trial and error of countless nights trying to install packages needed to fix wifi while wifi is broken to ricing small things like a script to remove bars from zathura and qute browser...
+<img width="1366" height="768" alt="fastfetch" src="https://github.com/user-attachments/assets/e6f97a35-61ef-4e49-ab14-9f165e2dfdec" />
 <br>
-<img width="1366" height="768" alt="rice7" src="https://github.com/user-attachments/assets/688f955e-927e-48f8-badc-4a3a11a15fb7" />
+<img width="1366" height="768" alt="mix1" src="https://github.com/user-attachments/assets/5fac308f-6019-48f6-93af-6b7827b3caab" />
+<br>
+<img width="1366" height="768" alt="wofi" src="https://github.com/user-attachments/assets/e40d508a-ccd1-45ab-b7df-2e341f57eda7" />
+<br>
+<img width="1366" height="768" alt="mix2" src="https://github.com/user-attachments/assets/ae569e32-3430-4c3f-9ad3-79cb42f3f0fc" />
+<br>
+<img width="1366" height="768" alt="nvim2" src="https://github.com/user-attachments/assets/6f86255a-9d8b-4a41-8eb1-e22c8deb6fa2" />
+<br>
+<img width="1366" height="768" alt="wlogout" src="https://github.com/user-attachments/assets/94620045-bb85-427f-bd4f-0f5f84886876" />
 
-<br>
-<img width="1362" height="768" alt="swappy-20260501_143242" src="https://github.com/user-attachments/assets/1f3d1e7d-70a2-4191-8239-5db1b256aa45" />
-<br> 
-<img width="1360" height="768" alt="1777625883440" src="https://github.com/user-attachments/assets/b88f5771-f646-4507-9ea3-e5bd169f9237" />
-<br>
-<img width="1363" height="768" alt="nvim_fzf" src="https://github.com/user-attachments/assets/3871bdbf-8a8a-441f-8b6a-4e6141d220d0" />
-<br>
-<img width="1361" height="768" alt="swappy-20260501_144034" src="https://github.com/user-attachments/assets/89fcf6ca-b02c-4207-8b16-5c9ecfe36d79" />
-<br>
-<img width="1366" height="768" alt="old_rice" src="https://github.com/user-attachments/assets/10b4b32c-e0c8-49a4-bcc8-8a11c7c2749a" />
