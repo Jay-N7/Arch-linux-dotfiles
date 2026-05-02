@@ -5,7 +5,9 @@
 - Its a super fast and efficient workflow, using a tiling manager "hyprland".
 - Main ext editor is obviously "neovim"
 - FASTER workflow thanks to vim bindings acorss system, thus Qutebrowser also i have installed.
-- Refined and finetuned with trial and error acorss years, enjoy
+- Refined and finetuned with trial and error of countless nights trying to install packages needed to fix wifi while wifi is broken to ricing small things like a script to remove bars from zathura and qute browser...
+<br>
+<img width="1366" height="768" alt="rice7" src="https://github.com/user-attachments/assets/688f955e-927e-48f8-badc-4a3a11a15fb7" />
 
 <br>
 <img width="1362" height="768" alt="swappy-20260501_143242" src="https://github.com/user-attachments/assets/1f3d1e7d-70a2-4191-8239-5db1b256aa45" />
