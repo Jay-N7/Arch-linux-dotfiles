@@ -7,26 +7,23 @@
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-
-        "hyprland/workspaces",
-
+        "clock",
+        "network",
+        "bluetooth",
     ],
     "modules-center": [
-
-        "clock",
+        "hyprland/workspaces",
     ],
     "modules-right": [
         "custom/media",
         "pulseaudio",
-        "network",
         "backlight",
         "battery",
-
-        "bluetooth",
+        "custom/notifications",
         "custom/power"
     ],
 
-      "margin": "6px 8px -5px 8px",
+      "margin": "6px 6px -6px 6px",
 
     // Modules configuration
 /*     "hyprland/workspaces": {
@@ -107,7 +104,7 @@
 
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} ({signalStrength}%)  ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
@@ -117,7 +114,7 @@
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}%  {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
         "format-source": "{volume}% ",
@@ -144,8 +141,16 @@
     "custom/power": {
         "format" : "",
 		"on-click": "wlogout"
-    }
+    },
+
+    "custom/notifications": {
+    "exec": "swaync-client -swb",
+    "format": " {}",
+    "on-click": "swaync-client -t",
+    "on-click-right": "swaync-client -C",
+    "return-type": "json"
+}
 }
 
 
-
+

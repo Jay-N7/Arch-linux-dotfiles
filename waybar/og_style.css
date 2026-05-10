@@ -1,6 +1,6 @@
 * {
     font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
-    font-size: 12px;
+    font-size: 11px;
 }
 window#waybar {
     /*background-color: rgba(43, 48, 59, 1);*/
@@ -8,7 +8,7 @@ window#waybar {
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
-    border-radius:3;
+    /* border-radius:3; */
 }
 
 /*window#waybar.hidden {

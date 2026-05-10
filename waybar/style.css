@@ -1,6 +1,10 @@
 * {
     font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
     font-size: 11px;
+    font-weight: 600;         /* semi-bold */
+    letter-spacing: 0.5px;
+
+
 }
 window#waybar {
     /*background-color: rgba(43, 48, 59, 1);*/
@@ -37,7 +41,7 @@ button {
     box-shadow: inset 3 3px transparent;
     /* Avoid rounded borders under each button name */
     border: none;
-    border-radius: 0;
+    border-radius: 5;
     font-weight: bold;
 }
 
@@ -70,7 +74,7 @@ button {
   background-color: @foreground;
   background: #000000;
   margin: -4 4px;
-  border-radius: 11px;
+  border-radius: 10px;
   min-width: 14px;
   transition: all 0.25s ease;
 }
@@ -107,10 +111,9 @@ button {
 #window,
 #power-profiles-daemon
 {
-    padding: 0 8px;
+    padding: 0 10px;
     margin: 0 6px;
     border-radius: 5px;
-
 }
 
 /*#window,
@@ -139,8 +142,8 @@ button {
 }
 
 #battery.charging, #battery.plugged {
-    background-color: #ffffff;
-    color: #26A65B;
+    background-color: #000000;
+    color: #38fce3;
 }
 
 /*@keyframes blink {
@@ -241,6 +244,18 @@ button {
 #bluetooth > .needs-attention {
     -gtk-icon-effect: highlight;
     color: #eb4d4b;
+}
+
+#custom-notifications {
+    color: #ffffff;
+    background-color: #000000;
+    padding: 0 10px;
+    margin: 0 6px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+#custom-notifications.not-empty {
+    color: #ff007f;   /* your theme pink */
 }
 
 /*#scratchpad {
