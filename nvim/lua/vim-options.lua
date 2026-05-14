@@ -37,6 +37,8 @@ local function transparent()
     vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = bg })
     vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = bg })
     vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = bg })
+    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = bg })
+    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = bg })
 end
 
 transparent()

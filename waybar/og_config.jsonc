@@ -1,7 +1,7 @@
 // -*- mode: jsonc -*-
 {
-     "layer": "top", // Waybar at top layer
-     "position": "top", // Waybar position (top|bottom|left|right)
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
      //"height": 0.2, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 0, // Gaps between modules (4px)
@@ -13,6 +13,11 @@
         "clock",
     ],
     "modules-right": [
+        // "cpu",
+        // "temperature",
+        // "memory",
+        "custom/pacupdates",
+        "backlight",
         "network",
         "battery",
         "pulseaudio",
@@ -39,68 +44,67 @@
              "default": ""
          }
      }*/
-      "hyprland/workspaces": {
-      "format": "{name}",
-      "format-icons": {
-      "active": "~",
-      "default": "-"
-    },
-    "show-special": true,
-    "persistent-workspaces": {
-      "DP-10":[2,3,4,5,6]
-    },
-  },
+     "hyprland/workspaces": {
+         "format": "{name}",
+         "format-icons": {
+             "active": "~",
+             "default": "-"
+         },
+         "show-special": true,
+         "persistent-workspaces": {
+             "DP-10":[2,3,4,5,6]
+         },
+     },
 
-"bluetooth": {
-    "format": "",
-    "format-connected": "",
-    "format-disabled": "",
-    "format-off": "",
-    "tooltip": false,
-    "on-click": "blueman-manager"
-},
-    "clock": {
-        "format": "{:%I:%M %p }",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%d-%m-%Y}"
-    },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "temperature": {
+     "bluetooth": {
+         "format": "",
+         "format-connected": "",
+         "format-disabled": "",
+         "format-off": "",
+         "tooltip": false,
+         "on-click": "blueman-manager"
+     },
+     "clock": {
+         "format": "{:%I:%M %p }",
+         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+         "format-alt": "{:%d-%m-%Y}"
+     },
+     "cpu": {
+         "format": "{usage}% ",
+         "tooltip": false
+     },
+     "memory": {
+         "format": "{}% "
+     },
+     "temperature": {
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "backlight": {
+        "format": "{temperatureC}°C"
+     },
+     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
+     },
+     "battery": {
+         "states": {
             // "good": 95,
             "warning": 20,
             "critical": 15
-        },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% 󰚥",
-        "format-plugged": "{capacity}% 󰚥",
-        "format-alt": "{time} {icon}",
+         },
+         "format": "{capacity}% {icon}",
+         "format-full": "{capacity}% {icon}",
+         "format-charging": "{capacity}% 󰚥",
+         "format-plugged": "{capacity}% 󰚥",
+         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
-    },
+     },
 
-"network": {
+     "network": {
     // "interface": "wlp2*",
     "format-wifi": "{icon}",
     "format-icons": ["󰤯", "󰤟", "󰤢"],
@@ -109,36 +113,44 @@
     "format-disconnected": "⚠",
     "format-alt": "{essid} ({signalStrength}%)",
     "tooltip-format": "{ifname} via {gwaddr}"
-},
-"pulseaudio": {
-    // "scroll-step": 1,
-    "format": "{volume}% {icon}",
-    "format-bluetooth": "{volume}% {icon}",
-    "format-bluetooth-muted": " {icon}",
-    "format-muted": "",
-    "format-icons": {
-        "headphone": "",
-        "hands-free": "",
-        "headset": "",
-        "phone": "",
-        "portable": "",
-        "car": "",
-        "default": ["", "", ""]
-    },
-    "on-click": "pavucontrol"
-}, 
-"custom/media": {
-        "format": "{text}",
-        "return-type": "json",
-        "max-length": 30,
-        "escape": true,
-        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" 
-    },
+     },
+     "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}%  {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+     }, 
+     "custom/media": {
+         "format": "{text}",
+         "return-type": "json",
+         "max-length": 30,
+         "escape": true,
+         "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" 
+     },
 
-    "custom/power": {
-        "format" : "",
-		"on-click": "wlogout"
-    }
+     "custom/power": {
+         "format" : "",
+         "on-click": "wlogout"
+     },
+     "custom/pacupdates": {
+         "exec": "~/.config/waybar/scripts/pacupdates.sh",
+         "interval": 1800,
+         "return-type": "text",
+         "tooltip": false
+     }
 }
 
 
