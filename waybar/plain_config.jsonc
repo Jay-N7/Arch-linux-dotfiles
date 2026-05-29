@@ -7,28 +7,29 @@
     "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
-        "clock",
-        "network",
-        "bluetooth",
-        "custom/media",
+        "hyprland/workspaces"
     ],
     "modules-center": [
-        "hyprland/workspaces",
+        "clock",
     ],
     "modules-right": [
+        // "cpu",
+        // "temperature",
+        // "memory",
         "custom/pacupdates",
-        "pulseaudio",
         "backlight",
+        "network",
         "battery",
-        "custom/notifications",
+        "pulseaudio",
+        "bluetooth",
         "custom/power"
     ],
 
-    "margin": "6px 6px -6px 6px",
+//   "margin": "6px 12px -5px 12px",
 
     // Modules configuration
 /*     "hyprland/workspaces": {
-         "disable-scrol0l": true,
+         "disable-scroll": true,
          "all-outputs": true,
          "warp-on-scroll": false,
          "format": "{name}: {icon}",
@@ -55,14 +56,6 @@
          },
      },
 
-     // "bluetooth": {
-     //     "icon-size": 18,
-     //     "spacing": 8,
-     //     "icons": {
-     //         "blueman": "bluetooth",
-     //     }
-     // },
-
      "bluetooth": {
          "format": "",
          "format-connected": "",
@@ -72,7 +65,7 @@
          "on-click": "blueman-manager"
      },
      "clock": {
-         "format": "{:%I:%M %p %a}",
+         "format": "{:%I:%M %p }",
          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
          "format-alt": "{:%d-%m-%Y}"
      },
@@ -88,8 +81,7 @@
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format": "{temperatureC}°C"
      },
      "backlight": {
         // "device": "acpi_video1",
@@ -122,17 +114,6 @@
     "format-alt": "{essid} ({signalStrength}%)",
     "tooltip-format": "{ifname} via {gwaddr}"
      },
-     // "network": {
-     //    // "interface": "wlp2*", // (Optional) To force the use of this interface
-     //    // "format-wifi": "{essid} ({signalStrength}%)  ",
-     //    "format-wifi": "{signalStrength}%  ",
-     //    "format-ethernet": "{ipaddr}/{cidr} ",
-     //    "tooltip-format": "{ifname} via {gwaddr} ",
-     //    "format-linked": "{ifname} (No IP) ",
-     //    "format-disconnected": "Disconnected ⚠",
-     //    "format-alt": "{essid}"
-     //    // "format-alt": "{ifname}: {ipaddr}/{cidr}"
-     // },
      "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
@@ -151,7 +132,7 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
-     },
+     }, 
      "custom/media": {
          "format": "{text}",
          "return-type": "json",
@@ -164,14 +145,6 @@
          "format" : "",
          "on-click": "wlogout"
      },
-
-     "custom/notifications": {
-         "exec": "swaync-client -swb",
-         "format": " {}",
-         "on-click": "swaync-client -t",
-         "on-click-right": "swaync-client -C",
-         "return-type": "json"
-     },
      "custom/pacupdates": {
          "exec": "~/.config/waybar/scripts/pacupdates.sh",
          "interval": 1800,
@@ -180,7 +153,5 @@
      }
 }
 
-}
 
-
-
+

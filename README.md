@@ -28,47 +28,46 @@ This environment has been refined over many sleepless nights of trial, error, op
 
 # Screenshots
 
-## Fastfetch
 
-![Fastfetch](images/fastfetch.png)
+(images/fastfetch.png)
 
 ---
 
-## Mixed Rice
 
-![Desktop Rice](images/mix1.png)
+(images/mix1.png)
 
-![Theme1](images/theme1.png)
+(images/theme1.png)
 
-![Theme2](images/theme2.png)
 
 ---
 
 ## Neovim + FZF
 
-![Neovim FZF](images/nvim_fzf.png)
+(images/nvim_fzf.png)
+
+(images/theme2.png)
 
 ---
 
 ## Neovim
 
-![Neovim](images/nvim.png)
+(images/nvim.png)
 
 ---
 
-## Qutebrowser
+## webapps
 
-![Qutebrowser](images/qute.png)
+(images/webapps.png)
 
 ---
 
 ## Wlogout
 
-![Wlogout](images/wlogout.png)
+(images/wlogout.png)
 
 ---
 
 ## Wofi
 
-![Wofi](images/wofi.png)
+(images/wofi.png)
 

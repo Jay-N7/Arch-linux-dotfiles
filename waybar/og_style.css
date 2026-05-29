@@ -1,299 +1,251 @@
 * {
-    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
-    font-size: 11px;
+  background: transparent;
+  color: #cdd6f4;
+
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+
+  font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font";
+  font-size: 12px;
+  font-weight: 500;
 }
+
+/* =========================================================
+   WAYBAR
+========================================================= */
+
 window#waybar {
-    /*background-color: rgba(43, 48, 59, 1);*/
-    background: #000000;
-    color: #ffffff;
-    transition-property: background-color;
-    transition-duration: .5s;
-    /* border-radius:3; */
+  background: rgba(0, 0, 0, 1);
+  color: #cdd6f4;
 }
 
-/*window#waybar.hidden {
-    opacity: 0.2;
-}*/
+/* =========================================================
+   MODULE CONTAINERS
+========================================================= */
 
-/*
-window#waybar.empty {
-    background-color: transparent;
-}
-window#waybar.solo {
-    background-color: #FFFFFF;
-}
-*/
-
-/*window#waybar.termite {
-    background-color: #3F3F3F;
-}*/
-
-/*window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}*/
-
-button {
-    /* Use box-shadow instead of border so the text isn't offset */
-    box-shadow: inset 0 0px transparent;
-    /* Avoid rounded borders under each button name */
-    border: none;
-    border-radius: 0;
-    font-weight: bold;
+.modules-left {
+  margin-left: 8px;
 }
 
-
-/* you can set a style on hover for any module like this */
-#pulseaudio:hover {
-    background-color: #a37800;
+.modules-right {
+  margin-right: 8px;
 }
 
-/*#workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
-}*/
+/* =========================================================
+   WORKSPACES
+========================================================= */
 
-/*#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}*/
-
-/*#workspaces button.focused, #workspaces button.active {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}*/
-
-/*#workspaces button.urgent {
-    background-color: #eb4d4b;
-}*/
-#workspaces button {
-  padding: 1 8 1 8px;
-  color: @foreground;
-  background: #000000;
-  margin: -4 4px;
-  border-radius: 11px;
-  min-width: 14px;
-  transition: all 0.25s ease;
-}
-
-/* “neighbors” (visible workspaces) */
-/*#workspaces button.visible {
-  min-width: 26px;
-}*/
-
-/* active workspace */
-#workspaces button.active {
-  color: #ff007f;
-}
-
-/*#mode {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
-}*/
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#custom-pacupdates,
-#bluetooth,
-#mode,
-#workspaces,
-#custom-power,
-#window,
-#power-profiles-daemon
-{
-    padding: 0 8px;
-    margin: 0 4px;
-    border-radius: 0px;
-
-}
-
-/*#window,
 #workspaces {
-    margin: 0 4px;
-}*/
+  margin: 0;
+}
 
-/* If workspaces is the leftmost module, omit left margin */
-/*.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-}*/
+#workspaces button {
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
+  color: #6c7086;
+  transition: all 0.2s ease;
+}
 
-/* If workspaces is the rightmost module, omit right margin */
-/*.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
-}*/
+#workspaces button:hover {
+  color: #cdd6f4;
+}
+
+#workspaces button.active {
+  color: #ffffff;
+}
+
+#workspaces button.empty {
+  opacity: 0.45;
+}
+
+/* =========================================================
+   MODULE SPACING
+========================================================= */
+
+#cpu,
+#battery,
+#pulseaudio,
+#bluetooth,
+#network,
+#backlight,
+#custom-power,
+#custom-pacupdates,
+#tray {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+/* =========================================================
+   CLOCK
+========================================================= */
 
 #clock {
-    background-color: #f1c40f;
-    color: #000000;
+  margin-left: 8.75px;
+  color: #ffffff;
 }
 
-#battery {
-    background-color: #ff0000;
-    color: #000000;
-}
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
-}
-
-/*@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}*/
-
-/* Using steps() instead of linear as a timing function to limit cpu usage */
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-}
-
-#power-profiles-daemon {
-    padding-right: 15px;
-}
-
-
-#cpu {
-    background-color: #2ecc71;
-    color: #000000;
-}
-
-#memory,
-#custom-power
-{
-    background-color: #000000;
-}
-
-#window {
-    background-color: #ff0000;
-    color: #000000;
-}
-
-#disk {
-    background-color: #964B00;
-}
-
-#backlight {
-    background-color: #0f0000;
-}
+/* =========================================================
+   NETWORK
+========================================================= */
 
 #network {
-    background-color: #000000;
+  margin-right: 13px;
 }
 
 #network.disconnected {
-    background-color: #ff0000;
+  color: #a55555;
 }
 
-#pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
-}
-
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
-}
-
-#wireplumber {
-    background-color: #fff0f5;
-    color: #000000;
-}
-
-#wireplumber.muted {
-    background-color: #f53c3c;
-}
-
-#custom-media {
-    background-color: #2ecc71;
-    color: #000000;
-    min-width: 8px;
-}
-
-/*#temperature {
-    background-color: #f0932b;
-}*/
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
+/* =========================================================
+   BLUETOOTH
+========================================================= */
 
 #bluetooth {
-    background-color: #2980b9;
+  margin-right: 17px;
 }
 
-#bluetooth.connected {
-    color: #4da3ff; /* blue */
+#bluetooth.disabled,
+#bluetooth.off {
+  color: #6c7086;
 }
 
-/*#bluetooth > .passive {
-    -gtk-icon-effect: dim;
-}*/
+/* =========================================================
+   PULSEAUDIO
+========================================================= */
 
-/*#bluetooth > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
-}*/
-
-/*#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}*/
-
-/*#scratchpad.empty {
-	background-color: transparent;
-}*/
-
-/*#privacy {
-    padding: 0;
-}*/
-
-/*#privacy-item {
-    padding: 0 5px;
-    color: white;
-}*/
-
-/*#privacy-item.screenshare {
-    background-color: #cf5700;
-}*/
-
-/*#privacy-item.audio-in {
-    background-color: #1ca000;
-}*/
-
-/*#privacy-item.audio-out {
-    background-color: #0069d4;
-}*/
-window#waybar,
-#clock,
-#battery,
-#cpu,
-#memory,
-#temperature,
-#bluetooth,
-#backlight,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#mode,
-#workspaces,
-#window,
-#disk {
-    background-color: #000000;
-    color: #ffffff;
+#pulseaudio.muted {
+  color: #6c7086;
 }
 
-#clock, 
+/* =========================================================
+   BATTERY
+========================================================= */
+
+#battery.warning {
+  color: #f9e2af;
+}
+
+#battery.critical {
+  color: #a55555;
+}
+
+#battery.charging {
+  color: #a6e3a1;
+}
+
+/* =========================================================
+   PACMAN UPDATES
+========================================================= */
+
+#custom-pacupdates {
+  font-size: 10px;
+  color: #f9e2af;
+}
+
+/* =========================================================
+   POWER BUTTON
+========================================================= */
+
 #custom-power {
-    color: #ff007f;
+  color: #ffffff;
+  font-size: 14px;
 }
 
+/* =========================================================
+   TRAY
+========================================================= */
+
+#tray {
+  margin-right: 16px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+/* =========================================================
+   TOOLTIPS
+========================================================= */
+
+tooltip {
+  background: rgba(17, 17, 27, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  padding: 2px;
+}
+
+tooltip label {
+  color: #cdd6f4;
+}
+
+/* =========================================================
+   GROUP / DRAWER
+========================================================= */
+
+#custom-expand-icon {
+  margin-right: 18px;
+}
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+  opacity: 0;
+}
+
+/* =========================================================
+   VERTICAL SUPPORT
+========================================================= */
+
+.left .modules-left,
+.right .modules-left {
+  margin: 8px 0 0 0;
+}
+
+.left .modules-right,
+.right .modules-right {
+  margin: 0 0 8px 0;
+}
+
+.left #workspaces button,
+.right #workspaces button {
+  padding: 6px 0;
+  margin: 1.5px 0;
+}
+
+.left #cpu,
+.right #cpu,
+.left #battery,
+.right #battery,
+.left #pulseaudio,
+.right #pulseaudio,
+.left #bluetooth,
+.right #bluetooth,
+.left #network,
+.right #network,
+.left #backlight,
+.right #backlight,
+.left #custom-power,
+.right #custom-power,
+.left #custom-pacupdates,
+.right #custom-pacupdates {
+  margin: 1.5px 0;
+  padding: 6px 0;
+
+  min-width: 0;
+  min-height: 12px;
+}
+
+.left #tray,
+.right #tray {
+  margin: 0 0 16px 0;
+}
+
+.left #clock,
+.right #clock {
+  margin: 8.75px 0 0 0;
+}

@@ -27,7 +27,8 @@ return {
         }
         require('lualine').setup({
             options = {
-                theme = "dracula"
+                theme = "rose-pine"
+                -- theme = "dracula"
                 -- theme = my_theme
             }
         })
