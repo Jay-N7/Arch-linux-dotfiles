@@ -29,45 +29,45 @@ This environment has been refined over many sleepless nights of trial, error, op
 # Screenshots
 
 
-(images/fastfetch.png)
+![](images/fastfetch.png)
 
 ---
 
 
-(images/mix1.png)
+![](images/mix1.png)
 
-(images/theme1.png)
+![](images/theme1.png)
 
 
 ---
 
 ## Neovim + FZF
 
-(images/nvim_fzf.png)
+![](images/nvim_fzf.png)
 
-(images/theme2.png)
+![](images/theme2.png)
 
 ---
 
 ## Neovim
 
-(images/nvim.png)
+![](images/nvim.png)
 
 ---
 
 ## webapps
 
-(images/webapps.png)
+![](images/webapps.png)
 
 ---
 
 ## Wlogout
 
-(images/wlogout.png)
+![](images/wlogout.png)
 
 ---
 
 ## Wofi
 
-(images/wofi.png)
+![](images/wofi.png)
 
