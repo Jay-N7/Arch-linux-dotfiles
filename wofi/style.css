@@ -1,11 +1,12 @@
 window {
     margin: 0px;
-    background-color: #191724;
-    border-radius: 8px;
-    border: 1px solid #eb6f92;
+    /* background-color: #191724; */
+    background-color: rgba(0.19, 0.17, 0.24, 0.6);
+    /* border-radius: 8px; */
+    /* border: 1px solid #eb6f92; */
     color: #e0def4;
-    font-family: 'Mono Nerd Font';
-    font-size: 18px;
+    font-family: 'JetBrainsMono Nerd Font Mono';
+    font-size: 14px;
 }
 
 #input {
@@ -14,23 +15,24 @@ window {
     border: none;
     border-radius: 0px;;
     color: #eb6f92;
-    background-color: #26233a;
+    /* background-color: #26233a; */
+    background-color: rgba(0.26, 0.23, 0.39, 0.8);
     
 }
 
-#inner-box {
-    margin: 5px;
-    border: none;
-    background-color: #26233a;
-    color: #191724;
-    border-radius: 0px;
-}
-
-#outer-box {
-    margin: 15px;
-    border: none;
-    background-color: #191724;
-}
+/* #inner-box { */
+/*     margin: 5px; */
+/*     border: none; */
+/*     background-color: #26233a; */
+/*     color: #191724; */
+/*     border-radius: 0px; */
+/* } */
+/**/
+/* #outer-box { */
+/*     margin: 15px; */
+/*     border: none; */
+/*     background-color: #191724; */
+/* } */
 
 #scroll {
     margin: 0px;

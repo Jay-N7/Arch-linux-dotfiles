@@ -39,6 +39,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg")
     -- Background daemons
     hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("nm-applet --indicator")
     hl.exec_cmd("blueman-applet")
     hl.exec_cmd("wl-paste --watch cliphist store")
     hl.exec_cmd("clipman store")
@@ -98,9 +99,9 @@ hl.config({
     general = {
         gaps_in  = 6,
         gaps_out = 12,
-        border_size = 1,
+        border_size = 0,
         col = {
-            active_border   = { colors = {"rgba(c4a7e7ff)"}},
+            active_border   = { colors = {"rgba(eb6f92ff)"}},
             -- active_border   = { colors = {"rgba(e3ecf3ff)", "rgba(00ff99ee)"}, angle = 45 },
             inactive_border = "rgba(000000ff)",
         },
@@ -113,12 +114,12 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 12,
-        rounding_power = 6,
+        -- rounding       = 6,
+        -- rounding_power = 3,
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
-        inactive_opacity = 1.0,
+        inactive_opacity = 0.8,
 
         shadow = {
             enabled      = true,
@@ -129,7 +130,7 @@ hl.config({
 
         blur = {
             enabled   = false,
-            size      = 5,
+            size      = 6,
             passes    = 2,
             vibrancy  = 0.1696,
         },
@@ -186,6 +187,11 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 --     rounding    = 0,
 -- })
 
+hl.layer_rule({
+    match = { namespace = "wofi" },
+    blur = true,
+    ignore_alpha = 0.2,
+})
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
     dwindle = {
@@ -229,7 +235,7 @@ hl.config({
         kb_layout  = "us",
         kb_variant = "",
         kb_model   = "",
-        kb_options = "ctrl:swapcaps",
+        kb_options = "ctrl:swapcaps, altwin:swap_alt_win",
         kb_rules   = "",
         follow_mouse = 1,
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
@@ -245,11 +251,12 @@ function resize_toggling()
     )
 end
 hl.gesture({ fingers = 3, direction = "horizontal", action = "workspace" })
+hl.gesture({ fingers = 4, direction = "down", action =  function()
+    hl.dispatch(hl.dsp.workspace.toggle_special("control"))
+end})
+
 hl.gesture({ fingers = 3, direction = "up", scale = 1.5, action = resize_toggling })
 hl.gesture({ fingers = 3, direction = "down", scale = 1.5, action = "fullscreen" })
-hl.gesture({ fingers = 2, direction = "left", scale = 1, action = function ()
-    hl.dsp.exec_cmd("swaync-client -t")
-end})
 
 -- Example per-device config
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
@@ -298,21 +305,32 @@ hl.bind(mainMod .. " + F10", function()
     hl.monitor({ output = "eDP-1", disabled = state })
 end)
 
--- Webapps chromium 
-local chrome_app = function(url)
-    return hl.dsp.exec_cmd("chromium --app=" .. url)
-end
+    -- Webapps chromium [NORMAL]
+    local chrome_app = function(url)
+        return hl.dsp.exec_cmd("chromium --app=" .. url)
+    end
+        hl.bind(mainMod .. " + ALT + Y", chrome_app("https://youtube.com"))
+        hl.bind(mainMod .. " + ALT + S", chrome_app("https://spotify.com"))
+        hl.bind(mainMod .. " + ALT + G", chrome_app("https://github.com/"))
+        hl.bind(mainMod .. " + ALT + M", chrome_app("https://gmail.com"))
+        hl.bind(mainMod .. " + ALT + T", chrome_app("https://teams.cloud.microsoft"))
+        hl.bind(mainMod .. " + ALT + D", chrome_app("https://discord.com/channels/@me/1342902241459437692"))
+          
+    -- Webapps chromium [INCOGNITO]
+    local incognito_app = function(url)
+        return hl.dsp.exec_cmd("chromium --incognito --app=" .. url)
+    end
+        hl.bind(mainMod .. " + ALT + C", incognito_app("https://chatgpt.com"))
+        hl.bind(mainMod .. " + ALT + A", incognito_app("https://allmanga.to"))
+        hl.bind(mainMod .. " + ALT + H", incognito_app("https://wiki.hypr.land/Configuring"))
+    
+    -- Normal apps 
+        hl.bind(mainMod .. " + ALT + O", hl.dsp.exec_cmd("obsidian"))
+        hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd("qutebrowser"))
+        hl.bind(mainMod .. " + ALT + F", hl.dsp.exec_cmd("firefox"))
+        hl.bind(mainMod .. " + ALT + N", hl.dsp.exec_cmd("nextcloud"))
 
-hl.bind(mainMod .. " + ALT + C", chrome_app("https://chatgpt.com"))
-hl.bind(mainMod .. " + ALT + Y", chrome_app("https://youtube.com"))
-hl.bind(mainMod .. " + ALT + S", chrome_app("https://spotify.com"))
-hl.bind(mainMod .. " + ALT + G", chrome_app("https://github.com/"))
-hl.bind(mainMod .. " + ALT + M", chrome_app("https://gmail.com"))
-hl.bind(mainMod .. " + ALT + T", chrome_app("https://teams.cloud.microsoft"))
-hl.bind(mainMod .. " + ALT + H", chrome_app("https://wiki.hypr.land/Configuring"))
-hl.bind(mainMod .. " + ALT + O", hl.dsp.exec_cmd("obsidian"))
-hl.bind(mainMod .. " + ALT + D", chrome_app("https://discord.com/channels/@me/1342902241459437692"))
-hl.bind(mainMod .. " + ALT + A", chrome_app("https://allmanga.to"))
+
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -331,6 +349,9 @@ end
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + X",         hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + X", hl.dsp.window.move({ workspace = "special:magic" }))
+hl.bind(mainMod .. " + T",         hl.dsp.workspace.toggle_special("control"))
+hl.bind(mainMod .. " + SHIFT + T", hl.dsp.window.move({ workspace = "special:control" }))
+
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -415,4 +436,35 @@ hl.window_rule({
 hl.window_rule({ match = { class = "thunar" }, float = true })
 hl.window_rule({ match = { class = "blueman-manager" }, float = true })
 hl.window_rule({ match = { class = "calculator" }, float = true })
+-- Direct a specific class (e.g., Spotify) to a named special workspace
+hl.window_rule({
+    name = "spotify-scratchpad",
+    match = { class = "chrome-spotify.com__-Default" },
+    workspace = "special:control",
+    float = true,
+    size = { "monitor_w * 0.7", "monitor_h * 0.7" },
+    move = { "monitor_w * 0.02", "monitor_h * 0.05" }
+})
 
+
+
+-- local INTERNAL = "eDP-1"
+-- local function external_count()
+--     local n = 0
+--     for _, m in ipairs(hl.get_monitors() or {}) do
+--         if not (m.name and m.name:sub(1,3) == "eDP") then n = n + 1 end
+--     end
+--     return n
+-- end
+--
+-- local function apply()
+--     if external_count() >= 1 then
+--         hl.monitor({ output = INTERNAL, disabled = true })
+--     else
+--         hl.monitor({ output = INTERNAL, disabled = false })
+--         -- hl.monitor({ output = INTERNAL, mode = "1366x768@60Hz", position = "0x0", scale = 1 })
+--     end
+-- end
+-- hl.on("monitor.added",   apply)
+-- hl.on("monitor.removed", apply)
+-- hl.on("config.reloaded", apply) 

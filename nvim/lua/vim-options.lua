@@ -18,7 +18,7 @@ vim.opt.fillchars = { eob = " " }
 
 -- keymaps
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>op", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>x", vim.cmd.Ex)
 vim.keymap.set("x", "<leader>p", "\"_dP")
 -- This yanks to system clipboard
 vim.keymap.set("n", "<leader>y", "\"+y")
@@ -55,7 +55,7 @@ vim.g.netrw_banner = 0
 --vim.g.netrw_browse_split = 4
 --vim.g.netrw_altv = 1
 --vim.g.netrw_winsize = 25
---vim.g.netrw_keepdir = 0
+vim.g.netrw_keepdir = 0
 
 
 
@@ -65,12 +65,12 @@ local function transparent()
     local bg = "none"
     vim.api.nvim_set_hl(0, "Normal", { bg = bg })
     vim.api.nvim_set_hl(0, "NormalNC", { bg = bg })
---     vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
---     vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = bg })
---     vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = bg })
---     vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = bg })
---     vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = bg })
---     vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = bg })
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = bg })
+    vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = bg })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = bg })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = bg })
+    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = bg })
+    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = bg })
 end
 --
 transparent()

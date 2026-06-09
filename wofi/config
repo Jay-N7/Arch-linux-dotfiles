@@ -4,7 +4,7 @@ allow_markup=true
 hide_scroll=true
 
 columns=1
-width=30%
+width=20%
 lines=6
 always_parse_args=true
 icon-theme=Papirus

@@ -1,216 +1,251 @@
-/* * Variant: Rosé Pine */
-
-@define-color base            #191724;
-@define-color surface         #1f1d2e;
-@define-color overlay         #26233a;
-
-@define-color muted           #6e6a86;
-@define-color subtle          #908caa;
-@define-color text            #e0def4;
-
-@define-color love            #eb6f92;
-@define-color gold            #f6c177;
-@define-color rose            #ebbcba;
-@define-color pine            #31748f;
-@define-color foam            #9ccfd8;
-@define-color iris            #c4a7e7;
-
-@define-color highlightLow    #21202e;
-@define-color highlightMed    #403d52;
-@define-color highlightHigh   #524f67;
-
-
-/* Global */
-
 * {
-    font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font",
-                 "Font Awesome 6 Free", "Font Awesome 6 Brands", sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+  background: #000000;
+  color: #cdd6f4;
+
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+
+  font-family: "JetBrainsMono Nerd Font", "Symbols Nerd Font";
+  font-size: 12px;
+  font-weight: 500;
 }
+
+/* =========================================================
+   WAYBAR
+========================================================= */
 
 window#waybar {
-    background: transparent;
-    color: @text;
-    transition-property: background-color;
-    transition-duration: .5s;
+  background: rgba(0, 0, 0, 1);
+  color: #cdd6f4;
 }
 
-button {
-    box-shadow: inset 3 3px transparent;
-    border: none;
-    border-radius: 12;
-    font-weight: bold;
+/* =========================================================
+   MODULE CONTAINERS
+========================================================= */
+
+.modules-left {
+  margin-left: 8px;
 }
 
-#pulseaudio:hover {
-    color: @gold;
+.modules-right {
+  margin-right: 8px;
 }
 
+/* =========================================================
+   WORKSPACES
+========================================================= */
 
-/* Workspaces */
+#workspaces {
+  margin: 0;
+}
 
 #workspaces button {
-    padding: 1 8 1 8px;
-    background-color: @surface;
-    margin: -4 4px;
-    border-radius: 19px;
-    min-width: 14px;
-    transition: all 0.25s ease;
-    color: @muted;
+  all: initial;
+  padding: 0 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
+  color: #6c7086;
+  transition: all 0.2s ease;
 }
 
-#workspaces button.visible {
-    min-width: 26px;
-    background: @highlightMed;
-    color: @text;
+#workspaces button:hover {
+  color: #cdd6f4;
 }
 
 #workspaces button.active {
-    min-width: 42px;
-    background: @overlay;
-    color: @iris;
+  color: #ffffff;
 }
 
+#workspaces button.empty {
+  opacity: 0.45;
+}
 
-/* Shared Module Styling */
+/* =========================================================
+   MODULE SPACING
+========================================================= */
 
-#clock,
-#battery,
 #cpu,
-#memory,
-#temperature,
-#backlight,
-#custom-pacupdates,
-#network,
+#battery,
 #pulseaudio,
-#wireplumber,
-#custom-media,
 #bluetooth,
-#mode,
+#network,
+#backlight,
 #custom-power,
-#window,
-#power-profiles-daemon {
-    padding: 0 10px;
-    margin: 0 6px;
-    border-radius: 12px;
-    background-color: @surface;
+#custom-pacupdates,
+#tray {
+  min-width: 12px;
+  margin: 0 7.5px;
 }
 
-
-/* Individual Modules */
+/* =========================================================
+   CLOCK
+========================================================= */
 
 #clock {
-    color: @love;
+  margin-left: 8.75px;
+  color: #ffffff;
 }
 
-#battery {
-    color: @love;
-}
-
-#battery.charging,
-#battery.plugged {
-    color: @foam;
-}
-
-#battery.critical:not(.charging) {
-    color: @text;
-    background-color: @love;
-}
-
-#power-profiles-daemon {
-    color: @iris;
-    padding-right: 15px;
-}
-
-#cpu {
-    color: @foam;
-}
-
-#memory,
-#custom-power {
-    color: @rose;
-}
-
-#window {
-    color: @love;
-}
-
-#disk {
-    color: @gold;
-    background-color: @surface;
-}
-
-#backlight {
-    color: @text;
-}
+/* =========================================================
+   NETWORK
+========================================================= */
 
 #network {
-    color: @iris;
+  margin-right: 13px;
 }
 
 #network.disconnected {
-    color: @love;
+  color: #a55555;
 }
 
-#pulseaudio {
-    color: @gold;
-}
-
-#pulseaudio.muted {
-    color: @muted;
-    background-color: @highlightMed;
-}
-
-#wireplumber {
-    color: @text;
-}
-
-#wireplumber.muted {
-    color: @love;
-}
-
-#custom-media {
-    color: @foam;
-    min-width: 8px;
-}
-
-#temperature {
-    color: @gold;
-}
-
-#temperature.critical {
-    color: @love;
-}
+/* =========================================================
+   BLUETOOTH
+========================================================= */
 
 #bluetooth {
-    color: @text;
+  margin-right: 17px;
 }
 
-#bluetooth.connected {
-    color: @pine;
+#bluetooth.disabled,
+#bluetooth.off {
+  color: #6c7086;
 }
 
-#bluetooth > .passive {
-    -gtk-icon-effect: dim;
+/* =========================================================
+   PULSEAUDIO
+========================================================= */
+
+#pulseaudio.muted {
+  color: #6c7086;
 }
 
-#bluetooth > .needs-attention {
-    -gtk-icon-effect: highlight;
-    color: @love;
+/* =========================================================
+   BATTERY
+========================================================= */
+
+#battery.warning {
+  color: #f9e2af;
 }
 
-#custom-pacupdates,
-#custom-notifications {
-    color: @text;
-    background-color: @surface;
-    padding: 0 10px;
-    margin: 0 6px;
-    border-radius: 12px;
-    font-weight: 600;
+#battery.critical {
+  color: #a55555;
 }
 
-#custom-notifications.not-empty {
-    color: @love;
+#battery.charging {
+  color: #a6e3a1;
+}
+
+/* =========================================================
+   PACMAN UPDATES
+========================================================= */
+
+#custom-pacupdates {
+  font-size: 10px;
+  color: #f9e2af;
+}
+
+/* =========================================================
+   POWER BUTTON
+========================================================= */
+
+#custom-power {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+/* =========================================================
+   TRAY
+========================================================= */
+
+#tray {
+  margin-right: 16px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+/* =========================================================
+   TOOLTIPS
+========================================================= */
+
+tooltip {
+  background: rgba(17, 17, 27, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0;
+  padding: 2px;
+}
+
+tooltip label {
+  color: #cdd6f4;
+}
+
+/* =========================================================
+   GROUP / DRAWER
+========================================================= */
+
+#custom-expand-icon {
+  margin-right: 18px;
+}
+
+/* =========================================================
+   HIDDEN
+========================================================= */
+
+.hidden {
+  opacity: 0;
+}
+
+/* =========================================================
+   VERTICAL SUPPORT
+========================================================= */
+
+.left .modules-left,
+.right .modules-left {
+  margin: 8px 0 0 0;
+}
+
+.left .modules-right,
+.right .modules-right {
+  margin: 0 0 8px 0;
+}
+
+.left #workspaces button,
+.right #workspaces button {
+  padding: 6px 0;
+  margin: 1.5px 0;
+}
+
+.left #cpu,
+.right #cpu,
+.left #battery,
+.right #battery,
+.left #pulseaudio,
+.right #pulseaudio,
+.left #bluetooth,
+.right #bluetooth,
+.left #network,
+.right #network,
+.left #backlight,
+.right #backlight,
+.left #custom-power,
+.right #custom-power,
+.left #custom-pacupdates,
+.right #custom-pacupdates {
+  margin: 1.5px 0;
+  padding: 6px 0;
+
+  min-width: 0;
+  min-height: 12px;
+}
+
+.left #tray,
+.right #tray {
+  margin: 0 0 16px 0;
+}
+
+.left #clock,
+.right #clock {
+  margin: 8.75px 0 0 0;
 }
