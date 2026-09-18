@@ -99,10 +99,10 @@ hl.config({
     general = {
         gaps_in  = 6,
         gaps_out = 12,
-        border_size = 0,
+        border_size = 1,
         col = {
-            active_border   = { colors = {"rgba(eb6f92ff)"}},
-            -- active_border   = { colors = {"rgba(e3ecf3ff)", "rgba(00ff99ee)"}, angle = 45 },
+            -- active_border   = { colors = {"rgba(eb6f92ff)"}},
+            active_border   = { colors = {"rgba(e3ecf3ff)", "rgba(00ff99ee)"}, angle = 45 },
             inactive_border = "rgba(000000ff)",
         },
 
@@ -114,12 +114,12 @@ hl.config({
     },
 
     decoration = {
-        -- rounding       = 6,
-        -- rounding_power = 3,
+        rounding       = 2,
+        rounding_power = 1,
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 1.0,
-        inactive_opacity = 0.8,
+        inactive_opacity = 0.9,
 
         shadow = {
             enabled      = true,
@@ -129,9 +129,9 @@ hl.config({
         },
 
         blur = {
-            enabled   = false,
-            size      = 6,
-            passes    = 2,
+            enabled   = true,
+            size      = 3,
+            passes    = 1,
             vibrancy  = 0.1696,
         },
     },
@@ -314,13 +314,15 @@ end)
         hl.bind(mainMod .. " + ALT + G", chrome_app("https://github.com/"))
         hl.bind(mainMod .. " + ALT + M", chrome_app("https://gmail.com"))
         hl.bind(mainMod .. " + ALT + T", chrome_app("https://teams.cloud.microsoft"))
+        hl.bind(mainMod .. " + ALT + SHIFT + T", chrome_app("https://tasks.google.com/tasks/"))
         hl.bind(mainMod .. " + ALT + D", chrome_app("https://discord.com/channels/@me/1342902241459437692"))
           
     -- Webapps chromium [INCOGNITO]
     local incognito_app = function(url)
         return hl.dsp.exec_cmd("chromium --incognito --app=" .. url)
     end
-        hl.bind(mainMod .. " + ALT + C", incognito_app("https://chatgpt.com"))
+        hl.bind(mainMod .. " + ALT + C", incognito_app("https://claude.ai"))
+        hl.bind(mainMod .. " + ALT + W", incognito_app("https://web.whatsapp.com/"))
         hl.bind(mainMod .. " + ALT + A", incognito_app("https://allmanga.to"))
         hl.bind(mainMod .. " + ALT + H", incognito_app("https://wiki.hypr.land/Configuring"))
     
