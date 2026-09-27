@@ -45,6 +45,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("clipman store")
     hl.exec_cmd("swaync")
     hl.exec_cmd("hypridle")
+    hl.exec_cmd("nextcloud")
     -- Status bar
     hl.exec_cmd("waybar")
     -- Scripts
@@ -114,11 +115,11 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 2,
-        rounding_power = 1,
+        rounding       = 8,
+        rounding_power = 4,
 
         -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
+        active_opacity   = 0.9,
         inactive_opacity = 0.9,
 
         shadow = {
@@ -323,6 +324,8 @@ end)
     end
         hl.bind(mainMod .. " + ALT + C", incognito_app("https://claude.ai"))
         hl.bind(mainMod .. " + ALT + W", incognito_app("https://web.whatsapp.com/"))
+        hl.bind(mainMod .. " + ALT + SHIFT + W", incognito_app("https://word.cloud.microsoft/"))
+        hl.bind(mainMod .. " + ALT + SHIFT + P", incognito_app("https://powerpoint.cloud.microsoft/?wdOrigin=OFFICEWEBAPPHOME.SHELL"))
         hl.bind(mainMod .. " + ALT + A", incognito_app("https://allmanga.to"))
         hl.bind(mainMod .. " + ALT + H", incognito_app("https://wiki.hypr.land/Configuring"))
     
