@@ -1,223 +1,152 @@
+// ~/.config/waybar/config.jsonc — clean layout, no tray (looks come later)
 {
-  "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  "spacing": 0,
-  "height": 20,
-
-  // "modules-left": [
-  //   "custom/power",
-  //   "hyprland/workspaces"
-  // ],
-
-  "modules-center": [
-    "clock#horizontal"
+  "height": 32,
+  "spacing": 6,
+  "modules-left": [
+    "hyprland/workspaces"
+    // "mpris"
   ],
+  // "modules-center": [ "clock" ],
+  "modules-center": ["clock#day", "clock", "clock#date"],
+  "modules-right": [
 
-  // "modules-right": [
-  //   "group/tray-expander",
-  //   "custom/pacupdates",
-  //   "bluetooth",
-  //   "network",
-  //   "backlight",
-  //   "pulseaudio"
-  //   // "battery"
-  // ],
-
-  "margin": "2px 2px -8px 2px",
-
-  // =========================
-  // WORKSPACES
-  // =========================
-
+    "custom/updates",
+    "power-profiles-daemon",
+    "backlight",
+    "wireplumber",
+    "network",
+    "battery",
+    "custom/arch"
+  ],
   "hyprland/workspaces": {
-    "on-click": "activate",
-    "format": "{icon}",
-    "format-icons": {
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "0",
-      "active": "",
-      "default": ""
-    },
+    "format": "{id}",
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "sort-by": "number"
   },
-
-  // =========================
-  // CLOCK
-  // =========================
-
-  "clock#horizontal": {
-    "format": "{:%a %H:%M}",
-    "format-alt": "{:%d %B %Y}",
+    "clock#day": {
+    "format": "{:%a}",
+    "on-click": "~/.config/rofi/spotlight",
+    "min-length": 8,
+    "align": 1,
     "tooltip": false
   },
-
-  // =========================
-  // BLUETOOTH
-  // =========================
-
-  "bluetooth": {
-    "format": "",
-    "format-connected": "󰂱",
-    "format-disabled": "",
-    "format-off": "",
-    "tooltip-format": "Bluetooth",
-    "tooltip": true,
-    "on-click": "blueman-manager"
+  "clock": {
+    // "format": "{:%H:%M [%a] [%d %b]}",
+    "format": "{:%H:%M}",
+    "on-click": "~/.config/rofi/spotlight",
+    "tooltip-format": "<tt>{calendar}</tt>"
   },
-
-  // =========================
-  // NETWORK
-  // =========================
-
-  "network": {
+  "clock#date": {
+    "format": "{:%d %b}",
+    "on-click": "~/.config/rofi/spotlight",
+    "min-length": 8,
+    "align": 0,
+    "tooltip": false
+  },
+  // "clock": {
+  //   "format": "{:%H:%M [%a] [%d %b]}",
+  //   "tooltip-format": "<tt>{calendar}</tt>",
+  //   "calendar": {
+  //     "mode": "month",
+  //     "weeks-pos": "",
+  //     "on-scroll": 1
+  //   }
+  // },
+  "mpris": {
+    "format": "{status_icon} {dynamic}",
+    "max-length": 20,
+    "dynamic-order": [
+      "title",
+      "artist"
+    ],
+    "dynamic-len": 40,
+    "status-icons": {
+      "playing": "",
+      "paused": ""
+    },
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  "custom/updates": {
+    "exec": "~/.config/waybar/scripts/updates.sh",
+    "return-type": "json",
+    "interval": 3600,
+    "signal": 8,
+    "hide-empty-text": true,
+    "format": "󰥔 {}",
+    "on-click": "${TERMINAL:-kitty} -e sh -c 'yay -Syu || sudo pacman -Syu; pkill -RTMIN+8 waybar'"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
     "format-icons": [
-      "󰤯",
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "on-scroll-up": "brightnessctl -e4 -n2 set 5%+",
+    "on-scroll-down": "brightnessctl -e4 -n2 set 5%-"
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 muted",
+    "format-icons": [
+      "󰕿",
+      "󰖀",
+      "󰕾"
+    ],
+    "scroll-step": 5,
+    "max-volume": 100,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol"
+  },
+  "network": {
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "󰈀 wired",
+    "format-disconnected": "󰤮 offline",
+    "format-icons": [
       "󰤟",
       "󰤢",
       "󰤥",
       "󰤨"
     ],
-    "format": "{icon}",
-    "format-wifi": "{icon}",
-    "format-ethernet": "󰀂",
-    "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
-    "tooltip-format-ethernet": "Ethernet",
-    "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
-    "on-click": "nm-applet"
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
+    "on-click": "${TERMINAL:-kitty} -e nmtui"
   },
-
-  // =========================
-  // BACKLIGHT
-  // =========================
-
-  "backlight": {
-    "format": "{icon}",
-    "tooltip-format": "Brightness: {percent}%",
-    "format-icons": [
-      "󰃞",
-      "󰃟",
-      "󰃠"
-    ]
-  },
-
-  // =========================
-  // AUDIO
-  // =========================
-
-  "pulseaudio": {
-    "format": "{icon}",
-    "format-muted": "",
-    "tooltip-format": "Volume: {volume}%",
-    "scroll-step": 5,
-
-    "format-icons": {
-      "headphone": "",
-      "headset": "",
-      "default": [
-        "",
-        "",
-        ""
-      ]
-    },
-
-    "on-click": "pavucontrol"
-  },
-
-  // =========================
-  // BATTERY
-  // =========================
-
   "battery": {
     "states": {
-      "warning": 20,
-      "critical": 10
+      "warning": 25,
+      "critical": 12
     },
-
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-full": "󰁹 {capacity}%",
-
-    "tooltip-format": "{capacity}%",
-
-    "format-icons": {
-      "default": [
-        "󰁺",
-        "󰁻",
-        "󰁼",
-        "󰁽",
-        "󰁾",
-        "󰁿",
-        "󰂀",
-        "󰂁",
-        "󰂂",
-        "󰁹"
-      ]
-    }
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": [
+      "󰂎",
+      "󰁻",
+      "󰁽",
+      "󰁿",
+      "󰂁",
+      "󰁹"
+    ],
+    "tooltip-format": "{timeTo}\n{power:.1f} W"
   },
-
-  // =========================
-  // PACMAN UPDATES
-  // =========================
-
-  "custom/pacupdates": {
-    "exec": "~/.config/waybar/scripts/pacupdates.sh",
-    "interval": 1800,
-    "return-type": "text",
-    "tooltip": false,
-    "format": "{}"
-  },
-
-  // =========================
-  // POWER BUTTON
-  // =========================
-
-  "custom/power": {
+  "custom/arch": {
     "format": "",
     "tooltip": false,
     "on-click": "wlogout"
-  },
-
-  // =========================
-  // TRAY GROUP
-  // =========================
-
-  "group/tray-expander": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 500,
-      "children-class": "tray-group-item"
-    },
-    "modules": [
-      "group/expand-icons",
-      "tray"
-    ]
-  },
-
-  "group/expand-icons": {
-    "orientation": "inherit",
-    "modules": [
-      "custom/expand-icon"
-    ]
-  },
-
-  "custom/expand-icon": {
-    "format": "",
-    "tooltip": false
-  },
-
-  "tray": {
-    "icon-size": 12,
-    "spacing": 14
   }
 }

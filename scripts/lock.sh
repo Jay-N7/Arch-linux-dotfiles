@@ -1,0 +1,23 @@
+#!/bin/bash
+swaylock \
+  --clock \
+  --screenshots \
+  --indicator \
+  --timestr " %I:%M %p" \
+  --font "JetBrainsMono Nerd Font" \
+  --font-size 40 \
+  --indicator-radius 150 \
+  --indicator-thickness 10 \
+  --ring-color ff073a \
+  --ring-ver-color 6f42c1 \
+  --inside-color 10101099 \
+  --inside-ver-color 00000088 \
+  --text-color ffffff \
+  --text-ver-color ffffff \
+  --key-hl-color 1b03a3 \
+  --bs-hl-color ff5555 \
+  --effect-blur 8x3 \
+  --scaling fill \
+  --line-color 101010 \
+  --line-ver-color 101010 \
+  --separator-color 101010

@@ -1,0 +1,34 @@
+#!/bin/sh
+# ~/.config/rofi/spotlight — open the Spotlight-style launcher.
+#
+#   spotlight            -> Apps
+#   spotlight files | clip | win | power | dict | calc   (or 1..7)
+#
+# Pressing the same hotkey again while it's open closes it (toggle).
+# Inside rofi: Alt+1..7 jumps between modes in-place (your query is kept).
+
+pkill -x rofi && exit 0
+
+S="$HOME/.config/rofi/scripts"
+
+case "${1:-apps}" in
+    1|apps|drun)          SHOW=drun ;;
+    2|files|file)         SHOW=recursivebrowser ;;
+    3|clip|clipboard)     SHOW=clip ;;
+    4|win|window|windows) SHOW=win ;;
+    5|power|tlp)          SHOW=power ;;
+    6|dict|define)        SHOW=dict ;;
+    7|calc|math)          SHOW=calc ;;
+    *) echo "usage: spotlight [apps|files|clip|win|power|dict|calc]" >&2; exit 1 ;;
+esac
+
+BASE="drun,recursivebrowser,clip:$S/clipboard.sh,win:$S/windows.sh,power:$S/power.sh,dict:$S/dict.sh"
+
+# Calculator: native rofi-calc plugin (live results as you type) when installed,
+# otherwise a tiny python fallback (type expression, press Enter).
+if [ -e /usr/lib/rofi/calc.so ]; then
+    exec rofi -modes "$BASE,calc" -show "$SHOW" \
+        -calc-command "printf '%s' '{result}' | wl-copy" -no-show-match
+else
+    exec rofi -modes "$BASE,calc:$S/calc.sh" -show "$SHOW"
+fi

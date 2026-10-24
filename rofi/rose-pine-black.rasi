@@ -1,0 +1,108 @@
+/* ~/.config/rofi/rose-pine-black.rasi — Rosé Pine, pitch-black base */
+* {
+    base:     #000000;
+    surface:  #1f1d2e;
+    muted:    #6e6a86;
+    subtle:   #908caa;
+    text:     #e0def4;
+    love:     #eb6f92;
+    gold:     #f6c177;
+    rose:     #ebbcba;
+    pine:     #31748f;
+    foam:     #9ccfd8;
+    iris:     #c4a7e7;
+    hl-low:   #21202e;
+    hl-med:   #403d52;
+
+    font:             "JetBrainsMono Nerd Font 11";
+    background-color: transparent;
+    text-color:       @text;
+    margin:  0;
+    padding: 0;
+    spacing: 0;
+}
+
+
+mainbox {
+    padding:  12px;
+    spacing:  10px;
+    children: [ inputbar, message, listview, mode-switcher ];
+}
+
+/* search box: [ mode chip ][ query ] */
+inputbar {
+    background-color: @hl-low;
+    border-radius:    8px;
+    padding:          8px 10px;
+    spacing:          10px;
+    children:         [ prompt, entry ];
+}
+prompt {
+    background-color: @hl-med;
+    text-color:       @rose;
+    border-radius:    6px;
+    padding:          2px 8px;
+}
+entry {
+    placeholder:       "Search";
+    placeholder-color: @muted;
+    cursor-color:      @rose;
+    vertical-align:    0.5;
+}
+
+message { padding: 0 4px; }
+textbox { text-color: @subtle; }
+
+listview {
+    lines:        8;
+    columns:      1;
+    fixed-height: false;
+    dynamic:      true;
+    scrollbar:    false;
+    spacing:      2px;
+}
+
+element {
+    padding:       7px 10px;
+    spacing:       10px;
+    border-radius: 8px;
+}
+element normal.normal,  element alternate.normal  { text-color: @text; }
+element normal.active,  element alternate.active  { text-color: @foam; }
+element normal.urgent,  element alternate.urgent  { text-color: @love; }
+element selected.normal { background-color: @hl-med; text-color: @rose; }
+element selected.active { background-color: @hl-med; text-color: @foam; }
+element selected.urgent { background-color: @hl-med; text-color: @love; }
+
+element-icon {
+    size:           20px;
+    vertical-align: 0.5;
+}
+element-text {
+    text-color:     inherit;
+    vertical-align: 0.5;
+    highlight:      bold #c4a7e7;
+}
+
+mode-switcher { spacing: 4px; }
+button {
+    padding:       5px 0;
+    border-radius: 6px;
+    text-color:    @muted;
+}
+button selected {
+    background-color: @hl-low;
+    text-color:       @iris;
+}
+
+/* dropdown: hangs from the bottom of waybar, centered under the clock */
+window {
+    location:         north;
+    anchor:           north;
+    // y-offset:         32px;     /* = waybar "height" */
+    width:            640px;
+    background-color: @base;
+    border:           0px 1px 1px 1px;
+    border-color:     @hl-med;
+    border-radius:    0px 0px 12px 12px;
+}

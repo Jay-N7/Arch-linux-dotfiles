@@ -1,0 +1,53 @@
+/* ~/.config/rofi/config.rasi
+ * Spotlight-style rofi — phase 1 (function first, looks later).
+ * Launch it through ~/.config/rofi/spotlight, which wires up all 7 modes.
+ */
+
+configuration {
+    /* Fallback if you ever run plain `rofi -show ...` without the launcher */
+    modes:              "drun,recursivebrowser";
+
+    /* --- speed + matching --- */
+    show-icons:         true;
+    matching:           "fuzzy";
+    sort:               true;
+    sorting-method:     "fzf";       /* fzf-style ranking for fuzzy matches */
+    case-smart:         true;        /* like vim smartcase */
+    normalize-match:    true;        /* "e" matches "é" */
+
+    drun-match-fields:   "name,generic,exec,keywords";
+    drun-display-format: "{name}";
+    drun-show-actions:   false;
+
+    sidebar-mode:       true;        /* shows the 7-mode switcher row */
+
+    /* --- Alt+N jumps straight to mode N (rofi switches in-place, query kept) --- */
+    kb-custom-1:  "Alt+1";
+    kb-custom-2:  "Alt+2";
+    kb-custom-3:  "Alt+3";
+    kb-custom-4:  "Alt+4";
+    kb-custom-5:  "Alt+5";
+    kb-custom-6:  "Alt+6";
+    kb-custom-7:  "Alt+7";
+    kb-mode-next:     "Control+Tab,Shift+Right";
+    kb-mode-previous: "Control+ISO_Left_Tab,Shift+Left";
+
+    /* jump to the top result whenever the query changes */
+    inputchange { action: "kb-row-first"; }
+
+    /* --- per-mode labels (shown in the search field + switcher row) --- */
+    drun             { display-name: "Apps";      }
+    recursivebrowser {
+        display-name: "Files";
+        command:      "xdg-open";
+        /* skip dotfiles/dotdirs and heavy build dirs (matched per name) */
+        filter-regex: "^([.].*|node_modules|__pycache__|target|venv|build|dist)$";
+    }
+    clip             { display-name: "Clipboard"; }
+    win              { display-name: "Windows";   }
+    power            { display-name: "Power";     }
+    dict             { display-name: "Dictionary";}
+    calc             { display-name: "Calc";      }
+}
+
+@theme "~/.config/rofi/rose-pine-black.rasi"

@@ -8,9 +8,9 @@
 ---- MONITORS ----
 ------------------
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto", })
-hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = 1, })
-hl.monitor({ output = "DP-1", mode = "preferred", position = "1366x0", scale = 1, })
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "1.2", })
+-- hl.monitor({ output = "eDP-1", mode = "preferred", position = "0x0", scale = 1, })
+-- hl.monitor({ output = "DP-1", mode = "preferred", position = "1366x0", scale = 1, })
 
 -- hl.monitor({ output = "name", disabled = true })
 -- This is a key-binf written at the bottom for toggling the laptop screen 
@@ -26,7 +26,7 @@ hl.monitor({ output = "DP-1", mode = "preferred", position = "1366x0", scale = 1
 -- Set programs that you use
 local terminal    = "kitty"
 local fileManager = "thunar"
-local menu        = "wofi"
+local menu        = "rofi"
 
 -------------------
 ---- AUTOSTART ----
@@ -39,12 +39,16 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg")
     -- Background daemons
     hl.exec_cmd("awww-daemon")
-    hl.exec_cmd("nm-applet --indicator")
-    hl.exec_cmd("blueman-applet")
+    -- [theme] tray applets: no tray in waybar anymore, so these only run hidden
+    -- hl.exec_cmd("nm-applet --indicator")
+    -- hl.exec_cmd("blueman-applet")
     hl.exec_cmd("wl-paste --watch cliphist store")
-    hl.exec_cmd("clipman store")
-    hl.exec_cmd("swaync")
     hl.exec_cmd("hypridle")
+    -- [theme] clipman isn't installed and cliphist already does this
+    -- hl.exec_cmd("clipman store")
+    hl.exec_cmd("swaync")
+    -- [theme] duplicate: hypridle is already started above
+    -- hl.exec_cmd("hypridle")
     hl.exec_cmd("nextcloud")
     -- Status bar
     hl.exec_cmd("waybar")
@@ -100,11 +104,16 @@ hl.config({
     general = {
         gaps_in  = 6,
         gaps_out = 12,
-        border_size = 1,
+        -- border_size = 1,
+        border_size = 2, -- [theme]
         col = {
             -- active_border   = { colors = {"rgba(eb6f92ff)"}},
-            active_border   = { colors = {"rgba(e3ecf3ff)", "rgba(00ff99ee)"}, angle = 45 },
-            inactive_border = "rgba(000000ff)",
+            -- active_border   = { colors = {"rgba(ffffffff)"}},
+            -- active_border   = { colors = {"rgba(e3ecf3ff)", "rgba(00ff99ee)"}, angle = 45 },
+            -- [theme] Rosé Pine: iris -> rose gradient on the focused window
+            active_border   = { colors = {"rgba(c4a7e7ff)", "rgba(ebbcbaff)"}, angle = 45 },
+            -- inactive_border = "rgba(000000ff)",
+            inactive_border = "rgba(403d52aa)", -- [theme] Rosé Pine highlight-med, faint
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
@@ -115,8 +124,10 @@ hl.config({
     },
 
     decoration = {
-        rounding       = 8,
-        rounding_power = 4,
+        -- rounding       = 0,
+        -- rounding_power = 0,
+        rounding       = 12, -- [theme] same radius as the rofi theme
+        rounding_power = 2,  -- [theme] 2 = normal round corners (valid range is 1-10)
 
         -- Change transparency of focused and unfocused windows
         active_opacity   = 0.9,
@@ -124,16 +135,17 @@ hl.config({
 
         shadow = {
             enabled      = true,
-            range        = 4,
+            range        = 12, -- [theme] softer, wider shadow
             render_power = 3,
-            color        = 0xee1a1a1a,
+            color        = "rgba(00000099)", -- [theme]
         },
 
         blur = {
-            enabled   = true,
-            size      = 3,
-            passes    = 1,
+            enabled   = false, -- [theme] frosted look behind your 0.9-opacity windows
+            size      = 6,
+            passes    = 3,
             vibrancy  = 0.1696,
+            new_optimizations = true, -- [theme]
         },
     },
 
@@ -161,7 +173,8 @@ hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "
 hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
 hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
 hl.animation({ leaf = "layers",        enabled = true,  speed = 3.81, bezier = "easeOutQuint" })
-hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "easeOutQuint", style = "fade" })
+-- hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersIn",      enabled = true,  speed = 2.5,    bezier = "easeOutQuint", style = "fade" })
 hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
 hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
 hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
@@ -189,9 +202,16 @@ hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "
 -- })
 
 hl.layer_rule({
-    match = { namespace = "wofi" },
+    match = { namespace = "rofi" },
     blur = true,
     ignore_alpha = 0.2,
+})
+
+hl.layer_rule({
+    name    = "rofi-no-anim",
+    match   = { namespace = "rofi" },
+    -- no_anim = true,
+    animation = "slide top", -- [theme] drop down from the top
 })
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -281,7 +301,14 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("wlogout"))
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("wofi --show drun --style ~/.config/wofi/style.css"))
+-- hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("rofi --show drun --style ~/.config/rofi/style.css"))
+
+local spotlight = os.getenv("HOME") .. "/.config/rofi/spotlight"
+-- open / close (press again to close)
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(spotlight))
+-- direct jumps (optional) — replaces your old cliphist|rofi -dmenu bind
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(spotlight .. " clip"))
+
 
 hl.bind(mainMod .. " + V", function()
     hl.dispatch( hl.dsp.window.float({ action = "toggle" }))
@@ -293,7 +320,8 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
 -- Custom
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
-hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("sh -c 'cliphist list | wofi --show dmenu | cliphist decode | wl-copy'"))
+-- [theme] duplicate Super+Y: the spotlight clip bind above replaces this
+-- hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("sh -c 'cliphist list | rofi --show dmenu | cliphist decode | wl-copy'"))
 
 -- scripts (convert ltere to lua functions)
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/scripts/change_wallpaper.sh"))
@@ -472,4 +500,4 @@ hl.window_rule({
 -- end
 -- hl.on("monitor.added",   apply)
 -- hl.on("monitor.removed", apply)
--- hl.on("config.reloaded", apply) 
+-- hl.on("config.reloaded", apply)
