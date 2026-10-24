@@ -76,6 +76,8 @@ hl.env("QT_QPA_PLATFORM", "wayland")
 hl.env("SDL_VIDEODRIVER", "wayland")
 hl.env("CLUTTER_BACKEND", "wayland")
 
+hl.env("EDITOR", "nvim") -- [theme] default editor for yazi, git, etc.
+hl.env("VISUAL", "nvim")
 -----------------------
 ----- PERMISSIONS -----
 -----------------------

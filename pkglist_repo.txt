@@ -14,7 +14,6 @@ cliphist
 cups
 cups-pk-helper
 dolphin
-dunst
 efibootmgr
 eza
 fastfetch
@@ -84,6 +83,7 @@ sof-firmware
 starship
 sudo
 swappy
+swaync
 system-config-printer
 tailscale
 thunar

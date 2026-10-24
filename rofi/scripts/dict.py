@@ -1,99 +1,86 @@
 #!/usr/bin/env python3
 """rofi dictionary mode (called by dict.sh).
-
-ROFI_RETV=2 -> custom input: look the word up (dictionaryapi.dev, free, no key)
-ROFI_RETV=1 -> a definition row was picked: copy it and close
-Tip: when definitions are showing, type a new word and press Ctrl+Enter
-(or Enter if it doesn't fuzzy-match a row) to look it up.
+ROFI_RETV=2 -> look the word up   ROFI_RETV=1 -> copy the picked definition
+Sources: dictionaryapi.dev, then Wiktionary as fallback. Both reject Python's
+default User-Agent with HTTP 403, so every request sends its own.
 """
-import json
-import os
-import subprocess
-import sys
-import urllib.error
-import urllib.parse
-import urllib.request
-from html import escape
+import json, os, re, subprocess, sys
+import urllib.error, urllib.parse, urllib.request
+from html import escape, unescape
 
+UA = "rofi-spotlight-dict/1.0 (personal desktop launcher)"
 API = "https://api.dictionaryapi.dev/api/v2/entries/en/"
+WIKT = "https://en.wiktionary.org/api/rest_v1/page/definition/"
 MAX_DEFS = 30
 
+def out(*p): sys.stdout.write("".join(p) + "\n")
+def opt(k, v): out("\0", k, "\x1f", v)
+def row(disp, info):
+    out(disp.replace("\n", " "), "\0", "display", "\x1f", disp,
+        f"\x1finfo\x1f{info}" if info else "")
+def copy(t):
+    subprocess.run(["wl-copy"], input=t.encode(),
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-def out(*parts):
-    sys.stdout.write("".join(parts) + "\n")
+def get_json(url):
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=5) as r:
+        return json.load(r)
 
+def strip_html(s): return unescape(re.sub(r"<[^>]+>", "", s or "")).strip()
 
-def opt(key, val):
-    out("\0", key, "\x1f", val)
+def from_dictapi(word):
+    data = get_json(API + urllib.parse.quote(word))
+    e0 = data[0]
+    phon = e0.get("phonetic") or next(
+        (p.get("text") for p in e0.get("phonetics", []) if p.get("text")), "")
+    return phon, [(m.get("partOfSpeech", ""), d.get("definition", ""), d.get("example"))
+                  for e in data for m in e.get("meanings", []) for d in m.get("definitions", [])]
 
-
-def row(plain, display, info):
-    # entry text = plain (what rofi filters on), display = pango markup
-    clean = lambda s: s.replace("\n", " ").replace("\0", "").replace("\x1f", "")
-    out(clean(plain), "\0display\x1f", clean(display), "\x1finfo\x1f", clean(info))
-
-
-def copy(text):
-    subprocess.run(["wl-copy"], input=text.encode(), stdout=subprocess.DEVNULL,
-                   stderr=subprocess.DEVNULL)
-
+def from_wiktionary(word):
+    data = get_json(WIKT + urllib.parse.quote(word))
+    defs = []
+    for sec in data.get("en", []):
+        for d in sec.get("definitions", []):
+            t = strip_html(d.get("definition"))
+            if t:
+                ex = d.get("examples") or []
+                defs.append((sec.get("partOfSpeech", "").lower(), t, strip_html(ex[0]) if ex else None))
+    if not defs:
+        raise urllib.error.HTTPError(WIKT, 404, "not found", None, None)
+    return "", defs
 
 def lookup(word):
-    url = API + urllib.parse.quote(word.strip().lower())
-    try:
-        with urllib.request.urlopen(url, timeout=5) as r:
-            return json.load(r), None
-    except urllib.error.HTTPError as e:
-        return None, "No definitions found" if e.code == 404 else f"HTTP {e.code}"
-    except Exception as e:  # offline, DNS, timeout
-        return None, f"Lookup failed ({e.__class__.__name__})"
-
+    errs = []
+    for src in (from_dictapi, from_wiktionary):
+        try:
+            return src(word.strip().lower()), None
+        except urllib.error.HTTPError as e:
+            errs.append(e.code)
+        except Exception as e:
+            errs.append(e.__class__.__name__)
+    if all(c == 404 for c in errs):
+        return None, "No definitions found"
+    return None, "Lookup failed (" + ", ".join(map(str, errs)) + ")"
 
 def main():
-    retv = os.environ.get("ROFI_RETV", "0")
-    arg = sys.argv[1] if len(sys.argv) > 1 else ""
-
-    if retv == "1":
+    if os.environ.get("ROFI_RETV", "0") == "1":
         info = os.environ.get("ROFI_INFO", "")
-        if info:
-            copy(info)
+        if info: copy(info)
         return
-
-    word = arg.strip()
+    word = (sys.argv[1] if len(sys.argv) > 1 else "").strip()
     if not word:
-        opt("message", "Type a word and press Enter")
-        out(" \0nonselectable\x1ftrue")  # keep rofi open
-        return
-
+        opt("message", "Type a word and press Enter"); return
     opt("markup-rows", "true")
-    data, err = lookup(word)
+    res, err = lookup(word)
     if err:
-        # rofi closes a script mode that returns zero rows, so always emit one
-        opt("message", "Try another word")
-        out(f"{escape(word)}: {escape(err)}\0nonselectable\x1ftrue")
-        return
-
-    entry = data[0]
-    phon = entry.get("phonetic") or next(
-        (p.get("text") for p in entry.get("phonetics", []) if p.get("text")), "")
-    opt("message", f"<b>{escape(entry.get('word', word))}</b>  {escape(phon)}"
-                   "   ·   Enter copies a definition")
-
-    n = 0
-    for e in data:
-        for m in e.get("meanings", []):
-            pos = m.get("partOfSpeech", "")
-            for d in m.get("definitions", []):
-                text = d.get("definition", "")
-                ex = d.get("example")
-                disp = f"<i>{escape(pos)}</i>  {escape(text)}"
-                if ex:
-                    disp += f'  <span alpha="60%">“{escape(ex)}”</span>'
-                row(f"{pos} {text}", disp, text)
-                n += 1
-                if n >= MAX_DEFS:
-                    return
-
+        opt("message", f"<b>{escape(word)}</b> — {escape(err)}"); return
+    phon, defs = res
+    opt("message", f"<b>{escape(word)}</b>  {escape(phon)}   ·   Enter copies a definition")
+    for pos, text, ex in defs[:MAX_DEFS]:
+        disp = f"<i>{escape(pos)}</i>  {escape(text)}"
+        if ex: disp += f'  <span alpha="60%">“{escape(ex)}”</span>'
+        row(disp, text)
 
 if __name__ == "__main__":
     main()

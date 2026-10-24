@@ -1,0 +1,136 @@
+/* ~/.config/swaync/style.css — Rosé Pine, pitch-black base */
+@define-color base     #000000;
+@define-color surface  #1f1d2e;
+@define-color overlay  #26233a;
+@define-color muted    #6e6a86;
+@define-color subtle   #908caa;
+@define-color text     #e0def4;
+@define-color love     #eb6f92;
+@define-color gold     #f6c177;
+@define-color rose     #ebbcba;
+@define-color foam     #9ccfd8;
+@define-color iris     #c4a7e7;
+@define-color hl_low   #21202e;
+@define-color hl_med   #403d52;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+}
+
+/* ---------- popup notifications ---------- */
+.notification-row { outline: none; background: transparent; }
+.notification-row:focus,
+.notification-row:hover { background: transparent; }
+
+.notification-background { padding: 4px 8px; }
+
+.notification {
+    background: @base;
+    color: @text;
+    border: 1px solid @hl_med;
+    border-left: 3px solid @iris;
+    border-radius: 12px;
+    padding: 0;
+    margin: 4px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+.notification.critical { border-left-color: @love; }
+.notification.low      { border-left-color: @hl_med; }
+
+.notification-content { padding: 10px 12px; background: transparent; }
+.notification-default-action,
+.notification-default-action:hover { background: transparent; border-radius: 12px; }
+.notification-default-action:hover { background: @hl_low; }
+
+.summary    { color: @text; font-weight: bold; }
+.body       { color: @subtle; }
+.time       { color: @muted; font-size: 11px; margin-right: 22px; }
+.app-name   { color: @muted; }
+.critical .summary { color: @love; }
+.low .summary      { color: @subtle; }
+
+.image { border-radius: 8px; margin-right: 8px; }
+
+.close-button {
+    background: @hl_low;
+    color: @subtle;
+    border-radius: 99px;
+    min-width: 22px;
+    min-height: 22px;
+    margin: 8px;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+.close-button:hover { background: @love; color: @base; }
+
+/* action buttons (Reply, Open, …) */
+.notification-action {
+    background: @hl_low;
+    color: @rose;
+    border: none;
+    border-radius: 8px;
+    margin: 0 6px 6px 6px;
+}
+.notification-action:hover { background: @hl_med; color: @text; }
+
+/* progress bars (volume/brightness OSD-style notifications) */
+progressbar trough   { background: @hl_low; border-radius: 99px; min-height: 6px; }
+progressbar progress { background: @iris;   border-radius: 99px; min-height: 6px; }
+
+/* ---------- control center (swaync-client -t) ---------- */
+.control-center {
+    background: @base;
+    color: @text;
+    border: 1px solid @hl_med;
+    border-radius: 12px;
+    padding: 8px;
+}
+.control-center-list,
+.control-center-list-placeholder { background: transparent; color: @muted; }
+
+.notification-group-headers { color: @subtle; }
+.notification-group-icon    { color: @iris; }
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+    background: @hl_low; color: @subtle; border: none; border-radius: 99px;
+}
+.notification-group-collapse-button:hover,
+.notification-group-close-all-button:hover { background: @hl_med; color: @text; }
+
+/* title + "Clear All" */
+.widget-title { color: @text; font-weight: bold; margin: 6px 8px; }
+.widget-title > button {
+    background: @hl_low; color: @rose; border: none; border-radius: 8px; padding: 2px 10px;
+}
+.widget-title > button:hover { background: @love; color: @base; }
+
+/* Do Not Disturb */
+.widget-dnd { color: @subtle; margin: 6px 8px; }
+.widget-dnd > switch {
+    background: @hl_low; border: none; border-radius: 99px;
+}
+.widget-dnd > switch:checked { background: @iris; }
+.widget-dnd > switch slider  { background: @text; border-radius: 99px; }
+
+/* media player */
+.widget-mpris { margin: 6px 8px; }
+.widget-mpris-player {
+    background: @surface; border-radius: 10px; padding: 8px;
+}
+.widget-mpris-title    { color: @text; font-weight: bold; }
+.widget-mpris-subtitle { color: @subtle; }
+.widget-mpris button   { color: @rose; background: transparent; border: none; }
+.widget-mpris button:hover { background: @hl_med; border-radius: 8px; }
+
+/* sliders, buttons-grid, volume, backlight if you enable them */
+.widget-volume, .widget-backlight, .widget-buttons-grid {
+    background: @surface; border-radius: 10px; margin: 6px 8px; padding: 6px;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button {
+    background: @hl_low; color: @text; border: none; border-radius: 8px;
+}
+.widget-buttons-grid > flowbox > flowboxchild > button:checked { background: @iris; color: @base; }
+scale trough    { background: @hl_low; border-radius: 99px; }
+scale highlight { background: @iris;   border-radius: 99px; }

@@ -41,7 +41,7 @@ configuration {
         display-name: "Files";
         command:      "xdg-open";
         /* skip dotfiles/dotdirs and heavy build dirs (matched per name) */
-        filter-regex: "^([.].*|node_modules|__pycache__|target|venv|build|dist)$";
+        filter-regex: "^(\.git|\.cache|\.npm|\.cargo|\.rustup|\.mozilla|\.steam|\.var|\.local|node_modules|__pycache__|\.?venv|target|build|dist)$";
     }
     clip             { display-name: "Clipboard"; }
     win              { display-name: "Windows";   }
