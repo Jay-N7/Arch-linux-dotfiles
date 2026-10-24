@@ -1,3 +1,4 @@
+onlyoffice-bin
 wlogout
 yay
 yay-debug

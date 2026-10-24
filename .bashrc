@@ -39,6 +39,13 @@ alias update-dotfiles="~/scripts/update_arch_repo.sh"
 alias cal="khal calendar"
 alias v="vim"
 alias bat='upower -i $(upower -e | grep BAT) | grep -E "state|percentage|energy-rate|time to"'
+y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd < "$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
+}
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 #__conda_setup="$('/home/archer/Downloads/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -55,3 +62,4 @@ alias bat='upower -i $(upower -e | grep BAT) | grep -E "state|percentage|energy-
 # <<< conda initialize <<<
 
 export PATH="$HOME/.local/bin:$PATH"
+export EDITOR=nvim VISUAL=nvim

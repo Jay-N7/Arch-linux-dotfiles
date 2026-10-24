@@ -1,3 +1,4 @@
+7zip
 awww
 base
 base-devel
@@ -23,6 +24,7 @@ fzf
 ghostscript
 git
 github-cli
+gnome-themes-extra
 grim
 grub
 grub-btrfs
@@ -31,6 +33,7 @@ htop
 hypridle
 hyprland
 hyprlock
+imagemagick
 inotify-tools
 intel-media-driver
 intel-ucode
@@ -58,6 +61,7 @@ neovim
 networkmanager
 noto-fonts
 npm
+nwg-look
 openssh
 pacman-contrib
 pavucontrol
@@ -100,5 +104,9 @@ wl-clipboard
 wofi
 xdg-desktop-portal-hyprland
 xdg-utils
+yazi
+zathura
+zathura-pdf-mupdf
 zip
+zoxide
 zram-generator

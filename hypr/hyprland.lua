@@ -345,15 +345,15 @@ end)
         hl.bind(mainMod .. " + ALT + T", chrome_app("https://teams.cloud.microsoft"))
         hl.bind(mainMod .. " + ALT + SHIFT + T", chrome_app("https://tasks.google.com/tasks/"))
         hl.bind(mainMod .. " + ALT + D", chrome_app("https://discord.com/channels/@me/1342902241459437692"))
+        hl.bind(mainMod .. " + ALT + C", chrome_app("https://claude.ai"))
+        hl.bind(mainMod .. " + ALT + W", chrome_app("https://web.whatsapp.com/"))
+        hl.bind(mainMod .. " + ALT + SHIFT + W", chrome_app("https://word.cloud.microsoft/"))
+        hl.bind(mainMod .. " + ALT + SHIFT + P", chrome_app("https://powerpoint.cloud.microsoft/?wdOrigin=OFFICEWEBAPPHOME.SHELL"))
           
     -- Webapps chromium [INCOGNITO]
     local incognito_app = function(url)
         return hl.dsp.exec_cmd("chromium --incognito --app=" .. url)
     end
-        hl.bind(mainMod .. " + ALT + C", incognito_app("https://claude.ai"))
-        hl.bind(mainMod .. " + ALT + W", incognito_app("https://web.whatsapp.com/"))
-        hl.bind(mainMod .. " + ALT + SHIFT + W", incognito_app("https://word.cloud.microsoft/"))
-        hl.bind(mainMod .. " + ALT + SHIFT + P", incognito_app("https://powerpoint.cloud.microsoft/?wdOrigin=OFFICEWEBAPPHOME.SHELL"))
         hl.bind(mainMod .. " + ALT + A", incognito_app("https://allmanga.to"))
         hl.bind(mainMod .. " + ALT + H", incognito_app("https://wiki.hypr.land/Configuring"))
     
