@@ -14,8 +14,7 @@ import re
 import subprocess
 import sys
 
-HIST = os.path.join(os.environ.get("XDG_CACHE_HOME", os.path.expanduser("~/.cache")),
-                    "rofi-calc-history")
+HIST = os.devnull  # history disabled
 
 OPS = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul, ast.Div: op.truediv,
        ast.FloorDiv: op.floordiv, ast.Mod: op.mod, ast.Pow: op.pow,

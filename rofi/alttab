@@ -1,0 +1,9 @@
+#!/bin/sh
+# Alt+Tab: toggle the window list.
+# Tab / Shift+Tab = move down / up, Enter = go to window, Alt+Tab or Esc = close.
+pkill -x rofi && exit 0
+exec rofi -modes "win:$HOME/.config/rofi/scripts/windows.sh" -show win \
+    -kb-element-next "" -kb-element-prev "" \
+    -kb-row-down "Tab,Down" \
+    -kb-row-up   "ISO_Left_Tab,Up" \
+    -kb-cancel   "Escape,Alt+Tab"

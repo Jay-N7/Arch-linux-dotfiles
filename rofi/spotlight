@@ -28,7 +28,7 @@ BASE="drun,recursivebrowser,clip:$S/clipboard.sh,win:$S/windows.sh,power:$S/powe
 # otherwise a tiny python fallback (type expression, press Enter).
 if [ -e /usr/lib/rofi/calc.so ]; then
     exec rofi -modes "$BASE,calc" -show "$SHOW" \
-        -calc-command "printf '%s' '{result}' | wl-copy" -no-show-match -hint-welcome ""
+        -calc-command "printf '%s' '{result}' | wl-copy" -no-show-match -no-history -hint-welcome ""
 else
     exec rofi -modes "$BASE,calc:$S/calc.sh" -show "$SHOW"
 fi

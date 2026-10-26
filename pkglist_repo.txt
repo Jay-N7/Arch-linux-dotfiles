@@ -23,6 +23,7 @@ fzf
 ghostscript
 git
 github-cli
+gnome-keyring
 gnome-themes-extra
 grim
 grub
@@ -58,9 +59,11 @@ mkinitcpio
 nano
 neovim
 networkmanager
+nextcloud-client
 noto-fonts
 npm
 nwg-look
+obsidian
 openssh
 pacman-contrib
 pavucontrol

@@ -25,7 +25,8 @@ hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "1.2", 
 ---------------------
 -- Set programs that you use
 local terminal    = "kitty"
-local fileManager = "thunar"
+-- local fileManager = "thunar"
+local fileManager = "kitty --class yazi -e yazi"
 local menu        = "rofi"
 
 -------------------
@@ -144,8 +145,8 @@ hl.config({
 
         blur = {
             enabled   = false, -- [theme] frosted look behind your 0.9-opacity windows
-            size      = 6,
-            passes    = 3,
+            size      = 4,
+            passes    = 2,
             vibrancy  = 0.1696,
             new_optimizations = true, -- [theme]
         },
@@ -364,6 +365,10 @@ end)
         hl.bind(mainMod .. " + ALT + Q", hl.dsp.exec_cmd("qutebrowser"))
         hl.bind(mainMod .. " + ALT + F", hl.dsp.exec_cmd("firefox"))
         hl.bind(mainMod .. " + ALT + N", hl.dsp.exec_cmd("nextcloud"))
+
+-- this is the alt tab functionality to swich between windows suing the rofi windows list
+        hl.bind("ALT + Tab",         hl.dsp.exec_cmd("~/.config/rofi/alttab"))
+
 
 
 
